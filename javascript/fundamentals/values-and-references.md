@@ -101,15 +101,17 @@ const user
   │ name: "Ali" │
   └─────────────┘
 ```
+```text
 const user ─────X────> new object ---------------- Not Allowed
-
+```
+```text
 const user
      │
      ▼
   ┌─────────────┐
   │ name: "Sara"│  ← contents changed  ----------- Allowed
   └─────────────┘
-
+```
 ## Shallow copying
 
 A shallow copy creates a new outer object or array, but nested objects or arrays inside it still share their references with the original.
@@ -139,13 +141,13 @@ console.log(b.address.city); // Delhi
 The outer objects are different, but the nested address object is the same object.
 
 ### Diagram understanding for shallow copying in objects
-
+```text
 a ────────► { name: "Ali", address ──────┐ }
                                          │
 b ────────► { name: "Sara", address ─────┘ }
                                          ▼
                                   { city: "Delhi" }
-
+```
 The spread operator copied the top-level properties, but for the nested `address` property it copied the reference rather than creating a new nested object.
 
 ### Array.from()
@@ -176,11 +178,11 @@ console.log(a[0].name); // Sara
 Why?
 
 ### Diagram understanding for array 
-
+```text
 a ──────► [ ──► { name: "Ali" } ]
                 ▲
 b ──────► [ ────┘]
-
+```
 The arrays are different, but the object inside them is shared.
 
 ## Equality and references
@@ -210,6 +212,7 @@ console.log(a === c); // true
 `c`, however, contains the same reference as `a`, so `a === c` is true.
 
 ### Diagram Representation of equality and refrences
+```text
 a ──────┐
         ▼
      Object A
@@ -218,7 +221,7 @@ a ──────┐
 c ──────┘
 
 b ──────► Object B
-
+```
 Therefore:
 ```js
 a === c; // true
