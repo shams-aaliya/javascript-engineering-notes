@@ -58,5 +58,5 @@ const counter = createCounter();
 console.log(counter()); // 1
 console.log(counter()); // 2
 console.log(counter()); // 3
-
-The count binding cannot be accessed directly from outside createCounter(), but the returned function can access and modify it through its closure.
+```
+The `count` binding cannot be accessed directly from outside `createCounter()`, but the returned function can access and modify it through its closure.
