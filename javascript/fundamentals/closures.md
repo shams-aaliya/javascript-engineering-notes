@@ -10,7 +10,7 @@ A closure is the combination of a function object and a reference to the scope (
 
 ### My understanding
 
-A closure is the behaviour of a function where, even after the outer function finishes its execution, the lexical environment containing the bindings required by the inner function remains accessible to it.Technically, all JavaScript functions are closures. We don't usually notice this because most functions are called from the same scope in which they were defined, so the closure doesn't make a noticeable difference.
+A closure is the behaviour of a function where, even after the outer function finishes its execution, the lexical environment containing the bindings required by the inner function remains accessible to it. Technically, all JavaScript functions are closures. We don't usually notice this because most functions are called from the same scope in which they were defined, so the closure doesn't make a noticeable difference.
 
 ## Example
 ```js
