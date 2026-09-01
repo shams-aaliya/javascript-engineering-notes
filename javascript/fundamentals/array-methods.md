@@ -247,3 +247,65 @@ map    → get their names
 
 Although `reduce()` can perform both operations, it should not automatically be used simply because it is capable of doing so.
 Use the method that most clearly expresses what the code is trying to accomplish.
+
+## 5. Find / Check
+
+### `find()`
+
+`find()` is used when we want to find the **first element** in an array that satisfies a condition.
+
+```js
+const numbers = [4, 7, 12, 15, 20];
+
+const result = numbers.find(number => number > 10);
+
+console.log(result); // 12
+```
+`find()` checks the elements from left to right and stops as soon as the callback returns true.
+
+```text
+4  → false
+7  → false
+12 → true → STOP
+```
+
+It returns the element itself, not an array.
+
+If no element satisfies the condition, it returns undefined.
+
+```js
+const result = numbers.find(number => number > 100);
+
+console.log(result); // undefined
+```
+```js
+find() vs filter()
+```
+
+The key difference is what we are asking for:
+
+`find()`
+→ "Give me the FIRST element that matches."
+
+`filter()`
+→ "Give me ALL elements that match."
+
+For example:
+
+```js
+const numbers = [4, 7, 12, 15, 20];
+
+numbers.find(number => number > 10);
+// 12
+
+numbers.filter(number => number > 10);
+// [12, 15, 20]
+```
+`find()` is useful when we are looking for one particular item, such as finding a user by their ID:
+```js
+const user = users.find(user => user.id === 2);
+```
+
+Here, we don't need an array of matching users. We want the user itself.
+
+Because `find()` stops after finding the first match, it can avoid traversing the rest of the array when the match occurs early.
