@@ -309,3 +309,239 @@ const user = users.find(user => user.id === 2);
 Here, we don't need an array of matching users. We want the user itself.
 
 Because `find()` stops after finding the first match, it can avoid traversing the rest of the array when the match occurs early.
+
+### `findIndex()`
+
+`findIndex()` is used when we want to find the index of the first element that satisfies a condition.
+```js
+const numbers = [4, 7, 12, 15, 20];
+
+const result = numbers.findIndex((number) => number > 10);
+
+console.log(result); // 2
+```
+The array is:
+```text
+Value:  4   7   12   15   20
+Index:  0   1    2    3    4
+```
+`findIndex()` checks the elements from left to right and stops when the callback returns true.
+```text
+4  → false
+7  → false
+12 → true → STOP
+```
+It returns the index, not the element itself.
+
+If no element satisfies the condition, it returns `-1`.
+```js
+const result = numbers.findIndex((number) => number > 100);
+
+console.log(result); // -1
+```
+The mental model:
+```text
+find()
+→ "Give me the FIRST element that matches."
+
+findIndex()
+→ "Give me the POSITION of the FIRST element that matches."
+```
+A practical use case is when we need to locate an item in an array so that we can use its position to modify or remove it.
+
+### `some()`
+
+`some()` is used when we want to check whether at least one element in an array satisfies a condition.
+```js
+const numbers = [4, 7, 12, 15, 20];
+
+const result = numbers.some((number) => number > 18);
+
+console.log(result); // true
+```
+It checks the elements until the callback returns true.
+```text
+4  → false
+7  → false
+12 → false
+15 → false
+20 → true → STOP
+```
+It returns a boolean:
+```text
+true  → at least one element matches
+false → no elements match
+```
+The mental model:
+
+"I don't care which one. Just tell me if there is at least one."
+
+For example, we might use it to check whether a list of users contains at least one active user:
+```js
+const hasActiveUser = users.some((user) => user.active);
+```
+
+### `every()`
+
+`every()` is used when we want to check whether all elements in an array satisfy a condition.
+```js
+const numbers = [4, 7, 12, 15, 20];
+
+const result = numbers.every((number) => number > 3);
+
+console.log(result); // true
+```
+It returns false as soon as one element fails the condition.
+```text
+4  → true
+7  → true
+12 → true
+15 → true
+20 → true
+```
+The mental model:
+
+"Do ALL the elements satisfy this condition?"
+
+So `some()` and `every()` form a useful pair:
+```text
+some()
+→ "Does AT LEAST ONE match?"
+
+every()
+→ "Do ALL match?"
+```
+Both return a boolean.
+
+## 6. Check for a value
+### `includes()`
+
+`includes()` is used when we want to check whether an array contains a specific value.
+
+Unlike `some()`, it does not require a callback.
+```js
+const fruits = ["apple", "banana", "mango", "orange"];
+
+const result = fruits.includes("mango");
+
+console.log(result); // true
+```
+If the value does not exist:
+```js
+fruits.includes("grapes"); // false
+```
+It returns a boolean:
+```text
+true  → value exists
+false → value does not exist
+```
+The mental model:
+```text
+"Does this specific value exist in the array?"
+```
+For example:
+```js
+const allowedRoles = ["admin", "editor", "manager"];
+
+if (allowedRoles.includes(userRole)) {
+    // allow access
+}
+```
+`includes()` is useful for simple membership checks, while `some()` is useful when the condition needs to be evaluated against each element.
+
+## 7. Sort/Arrange
+### `sort()`
+
+`sort()` is used to arrange elements according to an ordering rule.
+
+By default, JavaScript sorts values as strings rather than performing numerical sorting.
+```js
+const numbers = [10, 2, 30, 4];
+
+numbers.sort();
+
+console.log(numbers); // [10, 2, 30, 4]
+```
+This happens because the values are compared as strings:
+```text
+"10"
+"2"
+"30"
+"4"
+```
+So we should not assume that `sort()` automatically means numerical ascending order.
+
+For numerical ascending order, we provide a comparison function:
+```js
+numbers.sort((a, b) => a - b);
+```
+The comparison function tells `sort()` how two elements should be ordered.
+```text
+negative → a should come before b
+positive → b should come before a
+zero     → no ordering difference
+```
+For example:
+```js
+const numbers = [10, 2, 30, 4];
+
+numbers.sort((a, b) => a - b);
+
+console.log(numbers); // [2, 4, 10, 30]
+```
+For descending order:
+```js
+numbers.sort((a, b) => b - a);
+result:
+[30, 10, 4, 2]
+```
+Important: `sort()` mutates the original array
+
+Unlike `map()` and `filter()`, which return new arrays without mutating the original array themselves, `sort()` changes the original array.
+
+So:
+```js
+const numbers = [10, 2, 30, 4];
+
+numbers.sort((a, b) => a - b);
+
+console.log(numbers); // [2, 4, 10, 30]
+```
+numbers itself is now sorted.
+
+The mental model:
+```text
+"Arrange the elements according to this ordering rule."
+```
+
+```text 
+forEach()
+→ Iterate through the elements and perform an action.
+
+map()
+→ Transform every element into a new array.
+
+filter()
+→ Select ALL elements that satisfy a condition.
+
+reduce()
+→ Accumulate elements into one result.
+
+find()
+→ Get the FIRST element that satisfies a condition.
+
+findIndex()
+→ Get the POSITION of the FIRST element that satisfies a condition.
+
+some()
+→ Check if AT LEAST ONE element satisfies a condition.
+
+every()
+→ Check if ALL elements satisfy a condition.
+
+includes()
+→ Check if a SPECIFIC VALUE exists in the array.
+
+sort()
+→ Arrange elements according to an ordering rule.
+```
