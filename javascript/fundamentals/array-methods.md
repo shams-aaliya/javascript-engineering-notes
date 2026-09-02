@@ -414,6 +414,7 @@ every()
 Both return a boolean.
 
 ## 6. Check for a value
+
 ### `includes()`
 
 `includes()` is used when we want to check whether an array contains a specific value.
@@ -450,6 +451,7 @@ if (allowedRoles.includes(userRole)) {
 `includes()` is useful for simple membership checks, while `some()` is useful when the condition needs to be evaluated against each element.
 
 ## 7. Sort/Arrange
+
 ### `sort()`
 
 `sort()` is used to arrange elements according to an ordering rule.
@@ -514,6 +516,7 @@ The mental model:
 "Arrange the elements according to this ordering rule."
 ```
 
+MENTAL MODEL TABLE:
 ```text 
 forEach()
 → Iterate through the elements and perform an action.
