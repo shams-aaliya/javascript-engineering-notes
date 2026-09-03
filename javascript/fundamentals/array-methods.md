@@ -516,6 +516,93 @@ The mental model:
 "Arrange the elements according to this ordering rule."
 ```
 
+## 8. Get a Portion
+
+### slice()
+
+`slice()` is used when we want to take a portion of an array and get it as a **new array**.
+
+It does **not mutate the original array**.
+
+```js
+const fruits = ["apple", "banana", "mango", "orange"];
+
+const result = fruits.slice(1, 3);
+
+console.log(result);
+console.log(fruits);
+```
+Output:
+```text
+["banana", "mango"]
+["apple", "banana", "mango", "orange"]
+```
+
+How `slice()` works
+```js
+array.slice(start, end)
+```
+`start` → index where extraction begins (included)
+`end` → index where extraction stops (excluded)
+
+For example:
+```js
+const numbers = [10, 20, 30, 40, 50];
+
+const result = numbers.slice(1, 3);
+```
+```text
+index:    0    1    2    3    4
+         10   20   30   40   50
+              ↑         ↑
+            start      end
+           include    exclude
+```
+So:
+```js
+result
+// [20, 30]
+```
+
+If only one argument is passed
+
+When only one value is passed, it is treated as the start index, and the elements are taken from that index until the end of the array.
+```js
+const numbers = [10, 20, 30, 40, 50];
+
+const result = numbers.slice(2);
+
+console.log(result);
+```
+Output:
+```text
+[30, 40, 50]
+```
+`slice()` does not mutate the original array
+
+Because `slice()` returns a new array, modifying the result does not modify the original array.
+```js
+const numbers = [10, 20, 30, 40];
+
+const result = numbers.slice(1, 3);
+
+result[0] = 999;
+
+console.log(result);
+console.log(numbers);
+```
+Output:
+```js
+[999, 30]
+[10, 20, 30, 40]
+```
+Mental model
+
+Think of `slice()` as:
+```text
+"Take a portion of this array and give me a new array."
+```
+
 MENTAL MODEL TABLE:
 ```text 
 forEach()
@@ -525,7 +612,7 @@ map()
 → Transform every element into a new array.
 
 filter()
-→ Select ALL elements that satisfy a condition.
+→ Get ALL elements that satisfy a condition.
 
 reduce()
 → Accumulate elements into one result.
@@ -547,4 +634,8 @@ includes()
 
 sort()
 → Arrange elements according to an ordering rule.
+
+
+slice()
+→ Get a portion of an array without changing the original.
 ```
