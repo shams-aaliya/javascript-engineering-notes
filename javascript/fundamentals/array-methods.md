@@ -603,6 +603,108 @@ Think of `slice()` as:
 "Take a portion of this array and give me a new array."
 ```
 
+## 9. Modify an Array
+
+### splice()
+
+`splice()` is used to **modify an array by removing and/or adding elements at a specific position**.
+
+Unlike `slice()`, `splice()` **mutates the original array**.
+
+```js
+const fruits = ["apple", "banana", "mango", "orange"];
+
+const result = fruits.splice(1, 1);
+
+console.log(result);
+console.log(fruits);
+```
+Output:
+```text
+["banana"]
+["apple", "mango", "orange"]
+```
+How `splice()` works
+```js
+array.splice(start, deleteCount, itemsToAdd...)
+```
+`start` → index where the modification begins
+`deleteCount` → number of elements to remove
+`itemsToAdd` → optional elements to add at that position
+
+#### Removing elements
+
+```js
+const numbers = [10, 20, 30, 40, 50];
+
+const result = numbers.splice(2, 2);
+
+console.log(result);
+console.log(numbers);
+```
+Output:
+```text
+[30, 40]
+[10, 20, 50]
+```
+`splice(2, 2)` means:
+```text
+Start at index 2 and remove 2 elements.
+```
+#### Adding elements
+
+If `deleteCount` is `0`, no elements are removed, but new elements can be inserted.
+```js
+const fruits = ["apple", "banana", "orange"];
+
+const result = fruits.splice(2, 0, "mango");
+
+console.log(result);
+console.log(fruits);
+```
+Output:
+```text
+[]
+["apple", "banana", "mango", "orange"]
+```
+Because nothing was removed, `splice()` returns an empty array.
+
+#### Removing and adding at the same time
+
+```js
+const fruits = ["apple", "banana", "orange"];
+
+const result = fruits.splice(1, 1, "mango", "grapes");
+
+console.log(result);
+console.log(fruits);
+```
+Output:
+```text
+["banana"]
+["apple", "mango", "grapes", "orange"]
+```
+Here, `banana` is removed and `mango` and `grapes` are inserted in its place.
+
+What does `splice()` return?
+
+`splice()` returns a *new array* containing the elements that were *removed*.
+
+If *nothing* is removed, it *returns* an *empty array*.
+
+Mental model
+
+Think of `splice()` as:
+```text
+"Go to this position, remove this many elements, and optionally add these elements."
+```
+
+Quick distinction
+```text
+slice()  → Get a portion of an array without changing the original.
+splice() → Modify an array by removing and/or adding elements at a specific position.
+```
+
 MENTAL MODEL TABLE:
 ```text 
 forEach()
@@ -635,7 +737,9 @@ includes()
 sort()
 → Arrange elements according to an ordering rule.
 
-
 slice()
 → Get a portion of an array without changing the original.
+
+splice() 
+→ Modify an array by removing and/or adding elements at a specific position.
 ```
