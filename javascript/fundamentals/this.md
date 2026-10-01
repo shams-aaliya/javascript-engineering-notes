@@ -412,5 +412,7 @@ Interview version
 
 If someone asks "What is `this` in JavaScript?", your natural answer can eventually be:
 ```text
-"this is a context reference whose value depends on how a function is invoked. For regular functions, the call site determines this; arrow functions don't have their own this and instead capture it lexically from their surrounding scope."
+"this is a context reference whose value depends on how a function is invoked. 
+For regular functions, the call site determines this; arrow functions don't have their own this
+ and instead capture it lexically from their surrounding scope."
 ```

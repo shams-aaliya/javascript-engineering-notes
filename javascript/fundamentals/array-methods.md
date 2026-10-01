@@ -339,7 +339,7 @@ const result = numbers.findIndex((number) => number > 100);
 
 console.log(result); // -1
 ```
-The mental model:
+**Mental model**
 ```text
 find()
 → "Give me the FIRST element that matches."
@@ -372,7 +372,7 @@ It returns a boolean:
 true  → at least one element matches
 false → no elements match
 ```
-The mental model:
+**Mental model**
 
 "I don't care which one. Just tell me if there is at least one."
 
@@ -399,7 +399,7 @@ It returns false as soon as one element fails the condition.
 15 → true
 20 → true
 ```
-The mental model:
+**Mental model**
 
 "Do ALL the elements satisfy this condition?"
 
@@ -436,7 +436,7 @@ It returns a boolean:
 true  → value exists
 false → value does not exist
 ```
-The mental model:
+**Mental model**
 ```text
 "Does this specific value exist in the array?"
 ```
@@ -511,7 +511,7 @@ console.log(numbers); // [2, 4, 10, 30]
 ```
 numbers itself is now sorted.
 
-The mental model:
+**Mental model**
 ```text
 "Arrange the elements according to this ordering rule."
 ```
@@ -596,7 +596,7 @@ Output:
 [999, 30]
 [10, 20, 30, 40]
 ```
-Mental model
+**Mental model**
 
 Think of `slice()` as:
 ```text
@@ -692,7 +692,7 @@ What does `splice()` return?
 
 If *nothing* is removed, it *returns* an *empty array*.
 
-Mental model
+**Mental model**
 
 Think of `splice()` as:
 ```text
@@ -705,7 +705,7 @@ slice()  → Get a portion of an array without changing the original.
 splice() → Modify an array by removing and/or adding elements at a specific position.
 ```
 
-MENTAL MODEL TABLE:
+**MENTAL MODEL TABLE:**
 ```text 
 forEach()
 → Iterate through the elements and perform an action.
